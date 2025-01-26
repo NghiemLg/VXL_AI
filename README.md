@@ -78,7 +78,7 @@ The goal is to demonstrate the deployment of an AI model on an embedded system f
 ### 1. Clone the Repository
 Clone the project repository to your local machine.
 ```bash
-git clone <repository-link>
+git clone https://github.com/NghiemLg/VXL_AI.git
 ```
 
 ### 2. Configure the Project
