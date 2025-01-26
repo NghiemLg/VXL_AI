@@ -158,6 +158,3 @@ git clone https://github.com/NghiemLg/VXL_AI.git
 
 ---
 
-## License
-This project is licensed under the MIT License. See the LICENSE file for details.
-
