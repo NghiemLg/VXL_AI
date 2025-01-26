@@ -1,4 +1,5 @@
-# README: Embedded AI-based Activity Recognition on Nucleo-F429ZI
+# Human Activity Recognition with angular speed and angular acceleration sensors.Application in bluetooth headphones.
+
 
 ## Project Overview
 This project implements an AI-based activity recognition system on the Nucleo-F429ZI microcontroller. The system uses two sensors, **L3G4200D** (gyroscope) and **ADXL345** (accelerometer), to collect motion data. The embedded AI model processes this data and activates one of six LEDs corresponding to the detected activity:
