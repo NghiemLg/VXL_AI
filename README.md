@@ -1,5 +1,4 @@
-# Human Activity Recognition with angular speed and angular acceleration sensors.Application in bluetooth headphones.
-
+# README: Embedded AI-based Activity Recognition on Nucleo-F429ZI
 
 ## Project Overview
 This project implements an AI-based activity recognition system on the Nucleo-F429ZI microcontroller. The system uses two sensors, **L3G4200D** (gyroscope) and **ADXL345** (accelerometer), to collect motion data. The embedded AI model processes this data and activates one of six LEDs corresponding to the detected activity:
@@ -38,7 +37,7 @@ The goal is to demonstrate the deployment of an AI model on an embedded system f
 - **Sensors used**:
   - **L3G4200D**: Measures angular velocity (X, Y, Z axes).
   - **ADXL345**: Measures linear acceleration (X, Y, Z axes).
-- Data is collected from these sensors and sent to the STM32 Nucleo board.
+- Data is collected from these sensors and sent to the STM32 Nucleo board via SPI communication.
 
 ### 2. Preprocessing
 - Raw sensor data is normalized and scaled.
@@ -56,17 +55,21 @@ The goal is to demonstrate the deployment of an AI model on an embedded system f
 ---
 
 ## Circuit Connections
-### L3G4200D to Nucleo-F429ZI
+### L3G4200D to Nucleo-F429ZI (SPI Communication)
 - **VCC** -> 3.3V
 - **GND** -> GND
-- **SDA** -> PB7
-- **SCL** -> PB6
+- **MOSI** -> PB5
+- **MISO** -> PB4
+- **SCLK** -> PB3
+- **CS** -> PB0
 
-### ADXL345 to Nucleo-F429ZI
+### ADXL345 to Nucleo-F429ZI (SPI Communication)
 - **VCC** -> 3.3V
 - **GND** -> GND
-- **SDA** -> PB9
-- **SCL** -> PB8
+- **MOSI** -> PB15
+- **MISO** -> PB14
+- **SCLK** -> PB13
+- **CS** -> PB12
 
 ### LEDs to Nucleo-F429ZI
 - Connect each LED anode to the corresponding GPIO pin (e.g., PA0 to PA5).
@@ -83,7 +86,7 @@ git clone https://github.com/NghiemLg/VXL_AI.git
 
 ### 2. Configure the Project
 1. Open the project in **STM32CubeIDE**.
-2. Verify the I2C configuration for both sensors (L3G4200D and ADXL345).
+2. Verify the SPI configuration for both sensors (L3G4200D and ADXL345).
 3. Import the AI model weights (`.bin` file) into the project.
 
 ### 3. Flash the Firmware
@@ -110,8 +113,15 @@ git clone https://github.com/NghiemLg/VXL_AI.git
 - Use Python and TensorFlow/Keras to build and train the AI model.
 - Export the trained model weights as a `.bin` file.
 
+**Training Script**: The file `main_numpy_5hd.ipynb` contains the Python code for training the model.
+
 ### 4. Model Deployment
 - Integrate the `.bin` file into the STM32 firmware.
+
+---
+
+## Firmware Development
+- The file `main.c` contains the embedded code for processing sensor data, running the AI model, and controlling the LEDs.
 
 ---
 
@@ -127,7 +137,7 @@ git clone https://github.com/NghiemLg/VXL_AI.git
 ---
 
 ## Troubleshooting
-1. **No sensor data**: Check sensor connections and I2C configuration.
+1. **No sensor data**: Check sensor connections and SPI configuration.
 2. **LEDs not lighting up**: Verify GPIO pin configurations and connections.
 3. **Incorrect activity classification**: Revalidate model accuracy and ensure correct data preprocessing.
 
